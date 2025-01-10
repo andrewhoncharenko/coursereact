@@ -7,6 +7,10 @@ import TabButton from "./components/TabButton";
 function App() {
   const [selectedTopic, setSelectedTopic] = useState();
   const items =  CORE_CONCEPTS.map(item => <CoreConcept key={item.title} {...item}/>);
+  const tabs = CORE_CONCEPTS.map(item =>
+    <TabButton key={item.title} isSelected={selectedTopic === item.title.toLowerCase()} onSelect={() => handleSelect(item.title.toLowerCase())}>
+      {item.title}
+    </TabButton>);
   let tabContent = <p>Please select a topic.</p>;
 
   function handleSelect(selectedButton) {
@@ -25,7 +29,7 @@ function App() {
           </div>
   }
   return (
-    <div>
+    <>
       <Header />
       <main>
         <section id="core-concepts">
@@ -37,15 +41,12 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect("components")}>Components</TabButton>
-            <TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
+            {tabs}
           </menu>
           {tabContent}
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
