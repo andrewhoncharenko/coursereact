@@ -1,3 +1,2 @@
-Demo
-
-https://main.dunomd9jxdl3s.amplifyapp.com/
+React project
+[Demo](https://main.dunomd9jxdl3s.amplifyapp.com/)
