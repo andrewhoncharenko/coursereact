@@ -1,11 +1,14 @@
 import { useState } from "react";
 import TabButton from "../TabButton";
+import Section from "../Section";
+import Tabs from "../Tabs";
 import { CORE_CONCEPTS, EXAMPLES } from "../../data.js";
+
 
 export default function Examples() {
     const [selectedTopic, setSelectedTopic] = useState();
     const tabs = CORE_CONCEPTS.map(item =>
-        <TabButton key={item.title} isSelected={selectedTopic === item.title.toLowerCase()} onSelect={() => handleSelect(item.title.toLowerCase())}>
+        <TabButton key={item.title} isSelected={selectedTopic === item.title.toLowerCase()} onClick={() => handleSelect(item.title.toLowerCase())}>
           {item.title}
         </TabButton>);
     let tabContent = <p>Please select a topic.</p>;
@@ -27,12 +30,10 @@ export default function Examples() {
     }
     
     return (
-        <section id="examples">
-          <h2>Examples</h2>
-          <menu>
-            {tabs}
-          </menu>
-          {tabContent}
-        </section>
+        <Section id="examples" title="Examples">
+          <Tabs buttons={tabs}>
+            {tabContent}
+          </Tabs>
+        </Section>
     );
 }
